@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="https://256f396852c440a29275ac231d644cb7.vfs.cloud9.us-east-1.amazonaws.com/"><span>Bookers</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+          <ul class="nav navbar-nav ml-auto justify-content-end">
+            <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Home", user_path(current_user.id),class:"nav-link text-lignt fas fa-home"  %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Users", users_path,class:" nav-link text-lignt fas fa-users " %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Books",books_path,class:"nav-link text-lignt fas fa-book-open" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out",destroy_user_session_path, method: :delete,class:"nav-link text-lignt fas fa-sign-out-alt" %>
+            </li>
+            <% else %>
+            <li>
+              <%= link_to "Home",root_path,class:"fas fa-home nav-link text-lignt" %>
+            </li>
+            <li>
+              <%= link_to "About",about_path,class:"fas fa-link nav-link text-light" %>
+            </li>
+            <li>
+              <%=link_to "Sign up",new_user_registration_path,class:"fas fa-user-plus nav-link text-light" %>
+            </li>
+            <li>
+              <%=link_to "Log in",new_user_session_path,class:"fas fa-sign-in-alt nav-link text-light" %>
+            </li>
+
+            <% end %>
+          </ul>
+
+        </div>
+      </nav>
+    </header>
+  　<main>
+      <%= yield %>
+    </main>
+    <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
